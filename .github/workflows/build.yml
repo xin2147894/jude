@@ -20,8 +20,6 @@ jobs:
           sudo mkdir -p /opt/theos
           sudo chown $(whoami) /opt/theos
           git clone --recursive https://github.com/theos/theos.git /opt/theos
-          cd /opt/theos
-          ./configure
 
       - name: Build
         run: |
@@ -35,7 +33,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: BypassFace.dylib
-          path: |
-            .theos/obj/debug/BypassFace.dylib
-            packages/*.deb
+          path: .theos/obj/debug/BypassFace.dylib
           if-no-files-found: warn
