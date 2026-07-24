@@ -7,7 +7,5 @@ include $(THEOS)/makefiles/common.mk
 TWEAK_NAME = BypassFace
 BypassFace_FILES = Tweak.xm
 BypassFace_CFLAGS = -fobjc-arc
-BypassFace_LIBRARIES = substrate
-BypassFace_PRIVATE_FRAMEWORKS = Foundation UIKit
 
 include $(THEOS_MAKE_PATH)/tweak.mk
