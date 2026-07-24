@@ -1,0 +1,41 @@
+name: Build iOS Dylib
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'Tweak.xm'
+      - 'Makefile'
+      - 'control'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Theos
+        run: |
+          sudo mkdir -p /opt/theos
+          sudo chown $(whoami) /opt/theos
+          git clone --recursive https://github.com/theos/theos.git /opt/theos
+          cd /opt/theos
+          ./configure
+
+      - name: Build
+        run: |
+          export THEOS=/opt/theos
+          export TARGET_IPHONEOS_DEPLOYMENT_VERSION=14.0
+          cd $GITHUB_WORKSPACE
+          make clean
+          make package
+
+      - name: Upload dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: BypassFace.dylib
+          path: |
+            .theos/obj/debug/BypassFace.dylib
+            packages/*.deb
+          if-no-files-found: warn
