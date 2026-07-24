@@ -6,7 +6,6 @@ on:
     paths:
       - 'Tweak.xm'
       - 'Makefile'
-      - 'control'
 
 jobs:
   build:
@@ -32,7 +31,6 @@ jobs:
           curl -L -o /tmp/ldid "$URL"
           chmod +x /tmp/ldid
           sudo mv /tmp/ldid /usr/local/bin/ldid
-          echo "ldid installed: $(ldid 2>&1 | head -1)"
 
       - name: Build
         run: |
@@ -40,11 +38,11 @@ jobs:
           export TARGET_IPHONEOS_DEPLOYMENT_VERSION=14.0
           cd $GITHUB_WORKSPACE
           make clean
-          make package
+          make
 
       - name: Upload dylib
         uses: actions/upload-artifact@v4
         with:
           name: BypassFace.dylib
           path: .theos/obj/debug/BypassFace.dylib
-          if-no-files-found: warn
+          if-no-files-found: error
