@@ -32,13 +32,26 @@ jobs:
           chmod +x /tmp/ldid
           sudo mv /tmp/ldid /usr/local/bin/ldid
 
+      - name: Create control file
+        run: |
+          cat > control << 'EOF'
+          Package: com.gdhaode.taxi.driver.bypassface
+          Name: BypassFace
+          Version: 1.0.0
+          Architecture: iphoneos-arm
+          Description: Bypass face scan for Haode taxi
+          Depends: mobilesubstrate
+          Priority: optional
+          Section: Tweaks
+          EOF
+
       - name: Build
         run: |
           export THEOS=/opt/theos
           export TARGET_IPHONEOS_DEPLOYMENT_VERSION=14.0
           cd $GITHUB_WORKSPACE
           make clean
-          make internal-library-all_
+          make
 
       - name: Upload dylib
         uses: actions/upload-artifact@v4
