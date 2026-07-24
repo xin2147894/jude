@@ -38,7 +38,7 @@ jobs:
           export TARGET_IPHONEOS_DEPLOYMENT_VERSION=14.0
           cd $GITHUB_WORKSPACE
           make clean
-          make
+          make internal-library-all_
 
       - name: Upload dylib
         uses: actions/upload-artifact@v4
