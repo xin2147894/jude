@@ -1,11 +1,1 @@
-Package: com.gdhaode.taxi.driver.bypassface
-Name: 免刷脸登录 - 好的出租联盟
-Version: 1.0.0
-Architecture: iphoneos-arm
-Description: 绕过至尊好的出租联盟的所有面部识别验证（白马、旷视、腾讯、阿里）
-Depends: mobilesubstrate
-Priority: optional
-Section: Tweaks
-Author: Hermes
-Maintainer: Hermes
-Tags: purpose::extension, compatible::ios13, compatible::ios14, compatible::ios15, compatible::ios16
+Package: com.gdhaode.taxi.driver.bypassface Name: 免刷脸登录 - 好的出租联盟 Version: 1.0.0 Architecture: iphoneos-arm Description: 绕过至尊好的出租联盟的所有面部识别验证 Depends: mobilesubstrate Priority: optional Section: Tweaks
